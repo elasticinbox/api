@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta http-equiv="Content-Language" content="en-us" />
+  <meta http-equiv="imagetoolbar" content="false" />
+  <meta name="MSSmartTagsPreventParsing" content="true" />
+  <title>Account | ElasticInbox API</title>
+  <link href="/css/reset.css" rel="stylesheet" type="text/css" />
+  <link href="/css/960.css" rel="stylesheet" type="text/css" />
+  <link href="/css/uv_active4d.css" rel="stylesheet" type="text/css" />
+  <link href="/shared/css/documentation.css" media="screen" rel="stylesheet" type="text/css">
+  <link href="/shared/css/pygments.css" media="screen" rel="stylesheet" type="text/css">
+  <script src="/shared/js/jquery.js" type="text/javascript"></script>
+  <script src="/shared/js/documentation.js" type="text/javascript"></script>
+</head>
+<body class="api">
+
+    <div id="header-wrapper">
+      <div id="header">
+        <div>
+          <a class="logo" href="/"><img src="/images/elasticinbox-logo.png" /></a>
+          <ul class="nav">
+            <li><a href="/v2/">REST API v2</a></li>
+            <li><a href="http://www.elasticinbox.com">ElasticInbox.com</a></li>
+          </ul>
+        </div>
+      </div><!-- #header -->
+    </div><!-- #header-wrapper -->
+
+    <div id="wrapper">
+      <div class="content">
+    <h1 id="account">Account</h1>
+
+<p>A new account should be initiated for each mailbox. Each mailbox, label and message belong to a specific account. It is possible to store accounts for multiple domains on a single ElasticInbox instance.</p>
+
+<h2 id="add-account-a-nameadda">Add account <a name="add"></a>
+</h2>
+
+<pre><code>POST /rest/v2/:domain/:user
+</code></pre>
+
+<h3 id="response">Response</h3>
+
+<pre class="headers"><code>Status: 201 Created
+Location: http://localhost:8080/rest/v2/domain.tld/user/mailbox</code></pre>
+
+<pre class="highlight"><code class="language-javascript"><span class="p">{</span>
+  <span class="s2">"ok"</span><span class="o">:</span> <span class="kc">true</span>
+<span class="p">}</span></code></pre>
+
+<h2 id="get-account-information-a-namegeta">Get account information <a name="get"></a>
+</h2>
+
+<p><strong>Note:</strong> This method has not been implemented yet.</p>
+
+<pre><code>GET /rest/v2/:domain/:user
+</code></pre>
+
+<h3 id="response-1">Response</h3>
+
+<pre class="headers"><code>Status: 200 OK</code></pre>
+
+<pre class="highlight"><code class="language-javascript"><span class="p">{</span>
+  <span class="s2">"attr"</span><span class="o">:</span> <span class="s2">"val"</span>
+<span class="p">}</span></code></pre>
+
+<h2 id="delete-account-a-namedeletea">Delete account <a name="delete"></a>
+</h2>
+
+<p>Deletes all account data including messages from BLOB store and metadata.</p>
+
+<pre><code>DELETE /rest/v2/:domain/:user
+</code></pre>
+
+<h3 id="response-2">Response</h3>
+
+<pre class="headers no-response"><code>Status: 204 No Content</code></pre>
+      </div>
+
+    <div id="js-sidebar" class="sidebar-shell">
+      <div class="js-toggle-list sidebar-module expandable">
+        <ul>
+          <li class="js-topic">
+            <h3><a href="#" class="js-expand-btn collapsed">&nbsp;</a><a href="/v2/">Summary</a></h3>
+          </li>
+          <li class="js-topic">
+            <h3><a href="#" class="js-expand-btn collapsed">&nbsp;</a><a href="/v2/account/">Accounts</a></h3>
+            <ul class="js-guides">
+              <li><a href="/v2/account/#add">Add</a></li>
+              <li><a href="/v2/account/#get">Get info</a></li>
+              <li><a href="/v2/account/#delete">Delete</a></li>
+            </ul>
+          </li>
+          <li class="js-topic">
+            <h3><a href="#" class="js-expand-btn collapsed">&nbsp;</a><a href="/v2/label/">Labels</a></h3>
+            <ul class="js-guides">
+              <li><a href="/v2/label/#get">Get all labels</a></li>
+              <li><a href="/v2/label/#add">Add</a></li>
+              <li><a href="/v2/label/#rename">Rename</a></li>
+              <li><a href="/v2/label/#delete">Delete</a></li>
+            </ul>
+          </li>
+          <li class="js-topic">
+            <h3><a href="#" class="js-expand-btn collapsed">&nbsp;</a><a href="/v2/mailbox/">Mailbox</a></h3>
+            <ul class="js-guides">
+              <li><a href="/v2/mailbox/#purge">Purge</a></li>
+              <li><a href="/v2/mailbox/#restore">Restore</a></li>
+            </ul>
+          </li>
+          <li class="js-topic">
+            <h3><a href="#" class="js-expand-btn collapsed">&nbsp;</a><a href="/v2/message/">Messages</a></h3>
+            <ul class="js-guides">
+              <li><a href="/v2/message/#list">List messages</a></li>
+              <li><a href="/v2/message/#get">Get parsed message</a></li>
+              <li><a href="/v2/message/#raw">Get raw message</a></li>
+              <li><a href="/v2/message/#uri">Get raw message URI</a></li>
+              <li><a href="/v2/message/#partid">Get message part by Part ID</a></li>
+              <li><a href="/v2/message/#contentid">Get message part by Content ID</a></li>
+              <li><a href="/v2/message/#store">Store message</a></li>
+              <li><a href="/v2/message/#update">Update message</a></li>
+              <li><a href="/v2/message/#modify">Modify labels and markers</a></li>
+              <li><a href="/v2/message/#delete">Delete message</a></li>
+              <li><a href="/v2/message/batch/#modify">Batch modify</a></li>
+              <li><a href="/v2/message/batch/#delete">Batch delete</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div> <!-- /sidebar-module -->
+      <div class="sidebar-module">
+        <p>This website is a <a href="https://github.com/elasticinbox" target="_blank">public GitHub repo</a>.</p>
+      </div>
+    </div><!-- /sidebar-shell -->
+
+    </div><!-- #wrapper -->
+
+    <div id="footer" >
+      <div class="upper_footer">
+        <div class="footer_inner clearfix">
+
+        <ul class="footer_nav">
+          <h4>ElasticInbox</h4>
+          <li><a href="http://www.elasticinbox.com/">Home</a></li>
+          <li><a href="http://www.elasticinbox.com/blog/">Blog</a></li>
+          <li><a href="http://www.elasticinbox.com/download/">Downloads</a></li>
+          <li><a href="http://www.elasticinbox.com/docs/">Docs</a></li>
+          <li><a href="http://www.elasticinbox.com/contacts/">Contacts</a></li>
+        </ul>
+
+        </div><!-- /.site -->
+      </div><!-- /.upper_footer -->
+    </div><!-- /#footer -->
+
+</body>
+</html>
