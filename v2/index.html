@@ -6,22 +6,22 @@
   <meta http-equiv="imagetoolbar" content="false" />
   <meta name="MSSmartTagsPreventParsing" content="true" />
   <title>ElasticInbox REST API v2</title>
-  <link href="/css/reset.css" rel="stylesheet" type="text/css" />
-  <link href="/css/960.css" rel="stylesheet" type="text/css" />
-  <link href="/css/uv_active4d.css" rel="stylesheet" type="text/css" />
-  <link href="/shared/css/documentation.css" media="screen" rel="stylesheet" type="text/css">
-  <link href="/shared/css/pygments.css" media="screen" rel="stylesheet" type="text/css">
-  <script src="/shared/js/jquery.js" type="text/javascript"></script>
-  <script src="/shared/js/documentation.js" type="text/javascript"></script>
+  <link href="../css/reset.css" rel="stylesheet" type="text/css" />
+  <link href="../css/960.css" rel="stylesheet" type="text/css" />
+  <link href="../css/uv_active4d.css" rel="stylesheet" type="text/css" />
+  <link href="../shared/css/documentation.css" media="screen" rel="stylesheet" type="text/css">
+  <link href="../shared/css/pygments.css" media="screen" rel="stylesheet" type="text/css">
+  <script src="../shared/js/jquery.js" type="text/javascript"></script>
+  <script src="../shared/js/documentation.js" type="text/javascript"></script>
 </head>
 <body class="api">
 
     <div id="header-wrapper">
       <div id="header">
         <div>
-          <a class="logo" href="/"><img src="/images/elasticinbox-logo.png" /></a>
+          <a class="logo" href="../"><img src="/images/elasticinbox-logo.png" /></a>
           <ul class="nav">
-            <li><a href="/v2/">REST API v2</a></li>
+            <li><a href="./">REST API v2</a></li>
             <li><a href="http://www.elasticinbox.com">ElasticInbox.com</a></li>
           </ul>
         </div>
@@ -68,47 +68,47 @@ action.</p>
       <div class="js-toggle-list sidebar-module expandable">
         <ul>
           <li class="js-topic">
-            <h3><a href="#" class="js-expand-btn collapsed">&nbsp;</a><a href="/v2/">Summary</a></h3>
+            <h3><a href="#" class="js-expand-btn collapsed">&nbsp;</a><a href="./">Summary</a></h3>
           </li>
           <li class="js-topic">
-            <h3><a href="#" class="js-expand-btn collapsed">&nbsp;</a><a href="/v2/account/">Accounts</a></h3>
+            <h3><a href="#" class="js-expand-btn collapsed">&nbsp;</a><a href="account/">Accounts</a></h3>
             <ul class="js-guides">
-              <li><a href="/v2/account/#add">Add</a></li>
-              <li><a href="/v2/account/#get">Get info</a></li>
-              <li><a href="/v2/account/#delete">Delete</a></li>
+              <li><a href="account/#add">Add</a></li>
+              <li><a href="account/#get">Get info</a></li>
+              <li><a href="account/#delete">Delete</a></li>
             </ul>
           </li>
           <li class="js-topic">
-            <h3><a href="#" class="js-expand-btn collapsed">&nbsp;</a><a href="/v2/label/">Labels</a></h3>
+            <h3><a href="#" class="js-expand-btn collapsed">&nbsp;</a><a href="label/">Labels</a></h3>
             <ul class="js-guides">
-              <li><a href="/v2/label/#get">Get all labels</a></li>
-              <li><a href="/v2/label/#add">Add</a></li>
-              <li><a href="/v2/label/#rename">Rename</a></li>
-              <li><a href="/v2/label/#delete">Delete</a></li>
+              <li><a href="label/#get">Get all labels</a></li>
+              <li><a href="label/#add">Add</a></li>
+              <li><a href="label/#rename">Rename</a></li>
+              <li><a href="label/#delete">Delete</a></li>
             </ul>
           </li>
           <li class="js-topic">
-            <h3><a href="#" class="js-expand-btn collapsed">&nbsp;</a><a href="/v2/mailbox/">Mailbox</a></h3>
+            <h3><a href="#" class="js-expand-btn collapsed">&nbsp;</a><a href="mailbox/">Mailbox</a></h3>
             <ul class="js-guides">
-              <li><a href="/v2/mailbox/#purge">Purge</a></li>
-              <li><a href="/v2/mailbox/#restore">Restore</a></li>
+              <li><a href="mailbox/#purge">Purge</a></li>
+              <li><a href="mailbox/#restore">Restore</a></li>
             </ul>
           </li>
           <li class="js-topic">
-            <h3><a href="#" class="js-expand-btn collapsed">&nbsp;</a><a href="/v2/message/">Messages</a></h3>
+            <h3><a href="#" class="js-expand-btn collapsed">&nbsp;</a><a href="message/">Messages</a></h3>
             <ul class="js-guides">
-              <li><a href="/v2/message/#list">List messages</a></li>
-              <li><a href="/v2/message/#get">Get parsed message</a></li>
-              <li><a href="/v2/message/#raw">Get raw message</a></li>
-              <li><a href="/v2/message/#uri">Get raw message URI</a></li>
-              <li><a href="/v2/message/#partid">Get message part by Part ID</a></li>
-              <li><a href="/v2/message/#contentid">Get message part by Content ID</a></li>
-              <li><a href="/v2/message/#store">Store message</a></li>
-              <li><a href="/v2/message/#update">Update message</a></li>
-              <li><a href="/v2/message/#modify">Modify labels and markers</a></li>
-              <li><a href="/v2/message/#delete">Delete message</a></li>
-              <li><a href="/v2/message/batch/#modify">Batch modify</a></li>
-              <li><a href="/v2/message/batch/#delete">Batch delete</a></li>
+              <li><a href="message/#list">List messages</a></li>
+              <li><a href="message/#get">Get parsed message</a></li>
+              <li><a href="message/#raw">Get raw message</a></li>
+              <li><a href="message/#uri">Get raw message URI</a></li>
+              <li><a href="message/#partid">Get message part by Part ID</a></li>
+              <li><a href="message/#contentid">Get message part by Content ID</a></li>
+              <li><a href="message/#store">Store message</a></li>
+              <li><a href="message/#update">Update message</a></li>
+              <li><a href="message/#modify">Modify labels and markers</a></li>
+              <li><a href="message/#delete">Delete message</a></li>
+              <li><a href="message/batch/#modify">Batch modify</a></li>
+              <li><a href="message/batch/#delete">Batch delete</a></li>
             </ul>
           </li>
         </ul>
