@@ -800,7 +800,7 @@ span.bash-output {
   position: absolute;
   top: 10px;
   left: 10px;
-  background: transparent url(images/popular_guide_sprites.png) 0 0 no-repeat;
+  background: transparent url(../images/popular_guide_sprites.png) 0 0 no-repeat;
 }
 
 .list-module a {
@@ -877,7 +877,7 @@ div.expandable > ul h3 > a:hover {
 
 div.expandable > ul h3 > a.collapsed,
 div.expandable > ul h3 > a.expanded {
-  background-image: url(/shared/images/expand-arrows.png);
+  background-image: url(../images/expand-arrows.png);
   background-position: 0px -3px;
   background-repeat: no-repeat;
   width: 13px;
@@ -890,7 +890,7 @@ div.expandable > ul h3 > a.expanded {
 }
 
 div.expandable > ul h3 > a.collapsed:hover {
-  background-image: url(/shared/images/expand-arrows.png);
+  background-image: url(../images/expand-arrows.png);
   background-position: 0px -43px;
   background-repeat: no-repeat;
   width: 13px;
