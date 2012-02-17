@@ -19,6 +19,7 @@ compile '*' do
   filter :colorize_syntax,
     :colorizers => {:javascript => :pygmentize}
   layout 'default'
+  filter :relativize_paths, :type => :html
 end
 
 route '/static/*' do
