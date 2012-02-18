@@ -62,6 +62,13 @@ metadata
   :'...' => '...'
 %>
 
+### Example request
+
+<pre class="terminal">
+% curl -XGET "http://host:8181/rest/v2/domain.tld/user/mailbox?metadata=true"
+</pre>
+
+
 ## Add label <a name="add"></a>
 
 Each user can add custom labels (similar to conventional folders). Unique label ID is automatically generated for each new label. There can be maximum of 10.000 labels in each account.
@@ -78,7 +85,7 @@ name
 ### Response
 
 <%= headers 201, :Location =>
-            'http://localhost:8080/rest/v2/domain.tld/user/mailbox/label/306' %>
+            'http://host:8181/rest/v2/domain.tld/user/mailbox/label/306' %>
 <%= json :id => 306 %>
 
 ### Response if label name disallowed or reserved
@@ -90,6 +97,13 @@ name
 
 <%= headers 409 %>
 <%= json :message => 'Error message' %>
+
+### Example request
+
+<pre class="terminal">
+% curl -XPOST "http://host:8181/rest/v2/domain.tld/user/mailbox/label?name=Custom%20Label"
+</pre>
+
 
 ## Rename label <a name="rename"></a>
 
@@ -109,6 +123,13 @@ name
 <%= headers 409 %>
 <%= json :message => 'Error message' %>
 
+### Example request
+
+<pre class="terminal">
+% curl -XPUT "http://host:8181/rest/v2/domain.tld/user/mailbox/label/306?name=RenameMyLabel"
+</pre>
+
+
 ## Delete label <a name="delete"></a>
 
 This operation deletes label and removes label from all associated messages.
@@ -123,3 +144,9 @@ This operation deletes label and removes label from all associated messages.
 
 <%= headers 400 %>
 <%= json :message => 'Error message' %>
+
+### Example request
+
+<pre class="terminal">
+% curl -XDELETE "http://host:8181/rest/v2/domain.tld/user/mailbox/label/306"
+</pre>

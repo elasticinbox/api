@@ -21,6 +21,13 @@ age
 
 <%= headers 204 %>
 
+### Example request
+
+<pre class="terminal">
+% curl -XPUT "http://host:8181/rest/v2/domain.tld/user/mailbox/purge?age=2011%2F04%2F16"
+</pre>
+
+
 ## Restore <a name="restore"></a>
 
 Restore deleted messages.

@@ -12,7 +12,7 @@ This call will return list of the messages for the given label.
 
 **Note:** Messages are always ordered by time.
 
-    GET /rest/v2/:domain/:user/mailbox/label/:label_id
+    GET /rest/v2/:domain/:user/mailbox/label/:labelid
 
 ### Parameters
 
@@ -93,6 +93,14 @@ reverse
     }
 %>
 
+### Example request
+
+<pre class="terminal">
+% curl -XGET \
+ "http://host:8181/rest/v2/domain.tld/user/mailbox/label/1?metadata=true&count=20&start=e5586600-f81d-11df-8cc2-080027267700"
+</pre>
+
+
 ## Get parsed message <a name="get"></a>
 
 Returns message labels, markers, important headers, attachments and body. Message body will be returned in `textBody` and `htmlBody` for the relevant mime types.
@@ -134,6 +142,14 @@ markseen
   :next => "e54d4270-f81d-11df-8cc2-080027267700"
 %>
 
+### Example request
+
+<pre class="terminal">
+% curl -XGET \
+ "http://host:8181/rest/v2/domain.tld/user/mailbox/message/e54f6550-f81d-11df-a9d1-080027267700?adjacent=true&label=1"
+</pre>
+
+
 ## Get raw message <a name="raw"></a>
 
 Fetches original message source.
@@ -158,9 +174,34 @@ Subject: =?utf-8?B?VVRGOCBUZXN0IMO8w6fDvG4gbcO2dnp1IGZpa2lsyZnFn23JmW1pxZ/JmW0=?
 Message-ID: <3917ea5a412bc64e0c1f04d81ac2e5c6@elasticinbox.com>
 MIME-Version: 1.0
 Content-Type: multipart/alternative;
-	boundary="b1_3917ea5a412bc64e0c1f04d81ac2e5c6"
+	boundary="b1-3917ea5a412bc64e0c1f04d81ac2e5c6"
 ...
 </pre>
+
+### Response with compressed output
+
+It is possible to get compressed message by specifying `Accept-Encoding: deflate` in the request
+headers.
+
+**Note:** Output compressed using `deflate` (RFC1951). Only messages stored with compression will 
+be returned in the compressed format. For other messages, output will be uncompressed.
+See blob compression option in the configuration file for more details.
+
+<%= headers 200,
+    :'Content-Type' => 'text/plain',
+    :'Content-Encoding' => 'deflate',
+    :'Transfer-Encoding' => 'chunked' %>
+<pre>
+binary deflated stream follows
+</pre>
+
+### Example request
+
+<pre class="terminal">
+% curl -XGET --compressed \
+ "http://host:8181/rest/v2/domain.tld/user/mailbox/message/74a68000-d5fb-14ce-ba99-040cced3bd7a/raw"
+</pre>
+
 
 ## Get raw message URI <a name="uri"></a>
 
@@ -173,6 +214,7 @@ Fetches BLOB URI. This is useful if you don't want ElasticInbox to act as a prox
 <%= headers 307,
     :Location => 'blob://aws-b1/user@domain.tld:753eef70-d5fb-14ce-abd4-040cced3bd7a'
 %>
+
 
 ## Get message part by Part ID <a name="partid"></a>
 
@@ -190,6 +232,14 @@ Each mime part (header, body, attachment) identified by their part number. The p
     :'Transfer-Encoding' => 'chunked' %>
 <pre>binary content follows</pre>
 
+### Example request
+
+<pre class="terminal">
+% curl -XGET \
+ "http://host:8181/rest/v2/domain.tld/user/mailbox/message/e54f6550-f81d-11df-a9d1-080027267700/3.1"
+</pre>
+
+
 ## Get message part by Content ID <a name="contentid"></a>
 
 MIME parts can also be fetched by Content-ID which is usually used for inline attachments. Content-ID string in request MUST be enclosed within angle brackets `<...>` (similar to RFC2392).
@@ -199,14 +249,22 @@ MIME parts can also be fetched by Content-ID which is usually used for inline at
 ### Response
 
 <%= headers 200,
-    :'Content-Type' => 'application/msword',
-    :'Content-Disposition' => 'attachment; filename="Letter.doc"',
+    :'Content-Type' => 'image/png',
+    :'Content-Disposition' => 'attachment; filename="elasticinbox.png"',
     :'Transfer-Encoding' => 'chunked' %>
 <pre>binary content follows</pre>
 
+### Example request
+
+<pre class="terminal">
+% curl -XGET \
+ "http://host:8181/rest/v2/domain.tld/user/mailbox/message/e54f6550-f81d-11df-a9d1-080027267700/&lt;img-12&gt;"
+</pre>
+
+
 ## Store message <a name="store"></a>
 
-Note: If no label specified, message will be stored only with label `0` (all_mails).
+Note: If no label specified, message will be stored only with label `0`.
 
     POST /rest/v2/:domain/:user/mailbox/message
 
@@ -223,11 +281,20 @@ marker
 Returns URL for new message as well as javascript with message id.
 
 <%= headers 201,
-    :Location => 'http://localhost:8080/rest/v2/domain.tld/user/mailbox/message/e5031a10-f81d-11df-a88e-080027267700'
+    :Location => 'http://host:8181/rest/v2/domain.tld/user/mailbox/message/e5031a10-f81d-11df-a88e-080027267700'
 %>
 <%= json \
   :id => 'e5031a10-f81d-11df-a88e-080027267700'
 %>
+
+### Example request
+
+<pre class="terminal">
+% curl -XPOST \
+ "http://host:8181/rest/v2/domain.tld/user/mailbox/message?label=3&label=100&marker=seen"
+ -T test-message.eml
+</pre>
+
 
 ## Update message <a name="update"></a>
 
@@ -248,17 +315,26 @@ As a result all information, other than labels and markers, will be replaced wit
 Returns URL for new message as well as javascript with message id.
 
 <%= headers 201,
-    :Location => 'http://localhost:8080/rest/v2/domain.tld/user/mailbox/message/9c0063e0-b131-11e0-a275-080027a49b23'
+    :Location => 'http://host:8181/rest/v2/domain.tld/user/mailbox/message/9c0063e0-b131-11e0-a275-080027a49b23'
 %>
 <%= json \
   :id => '9c0063e0-b131-11e0-a275-080027a49b23'
 %>
 
+### Example request
+
+<pre class="terminal">
+% curl -XPOST \
+ "http://host:8181/rest/v2/domain.tld/user/mailbox/message/9c0063e0-b131-11e0-a275-080027a49b23"
+ -T another-test-message.eml
+</pre>
+
+
 ## Modify labels and markers <a name="modify"></a>
 
 This method allows adding and removing of labels and markers.
 
-**Note:** Label `all_mails` added automatically and can't be removed.
+**Note:** Label `0` always added automatically and can't be removed.
 
 	PUT /rest/v2/:domain/:user/mailbox/message/:uuid
 
@@ -282,12 +358,27 @@ Each of the parameters can be used multiple times in order to add/remove multipl
 
 <%= headers 204 %>
 
+### Example request
+
+<pre class="terminal">
+% curl -XPUT \
+ "http://host:8181/rest/v2/domain.tld/user/mailbox/message/e5031a10-f81d-11df-a88e-080027267700?addlabel=3&addlabel=540&removemarker=seen"
+</pre>
+
+
 ## Delete message <a name="delete"></a>
 
-**Note:** This operation only removes message from all indexes (including `all_mails`) and adds to the special PURGE index. It is still possible to accesses message directly by ID after deletion. To completely delete message from metadata and blob stores purge command has to be issued.
+**Note:** This operation only removes message from all labels (including `0`) and adds it to the special `purge` queue. It is still possible to accesses message directly by ID after deletion. To completely delete message from metadata and blob stores purge command has to be issued.
 
 	DELETE /rest/v2/:domain/:user/mailbox/message/:uuid
 
 ### Response
 
 <%= headers 204 %>
+
+### Example request
+
+<pre class="terminal">
+% curl -XDELETE \
+ "http://host:8181/rest/v2/domain.tld/user/mailbox/message/e5031a10-f81d-11df-a88e-080027267700"
+</pre>

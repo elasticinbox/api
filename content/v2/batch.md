@@ -1,8 +1,8 @@
 ---
-title: Batch Message Operations | ElasticInbox API
+title: Batch Operations | ElasticInbox API
 ---
 
-# Batch Message Operations
+# Batch Operations
 
 ## Modify messages  <a name="modify"></a>
 
@@ -44,7 +44,7 @@ JSON array of message IDs.
 
 <pre class="terminal">
 $ curl -XPUT \
-  "http://localhost:8080/rest/v2/elasticinbox.com/user/mailbox/message?addlabel=3&addlabel=540&removemarker=seen" \
+  "http://host:8181/rest/v2/domain.tld/user/mailbox/message?addlabel=3&addlabel=540&removemarker=seen" \
    -d "[\"e5031a10-f81d-11df-a88e-080027267700\", \"e54f6550-f81d-11df-a9d1-080027267700\"]" \
    -H "Content-Type: application/json"
 </pre>
@@ -68,3 +68,11 @@ JSON array of message IDs.
 ### Response
 
 <%= headers 204 %>
+
+### Example request
+
+<pre class="terminal">
+% curl -XDELETE "http://host:8181/rest/v2/domain.tld/user/mailbox/message" \
+  -d "[\"e5031a10-f81d-11df-a88e-080027267700\", \"e54f6550-f81d-11df-a9d1-080027267700\"]" \
+  -H "Content-Type: application/json"
+</pre>

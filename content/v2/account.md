@@ -13,7 +13,7 @@ A new account should be initiated for each mailbox. Each mailbox, label and mess
 ### Response
 
 <%= headers 201, :Location =>
-            'http://localhost:8080/rest/v2/domain.tld/user/mailbox' %>
+            'http://host:8181/rest/v2/domain.tld/user/mailbox' %>
 <%= json :ok => true %>
 
 ## Get account information <a name="get"></a>
