@@ -97,6 +97,12 @@
   <span class="s2">"..."</span><span class="o">:</span> <span class="s2">"..."</span>
 <span class="p">}</span></code></pre>
 
+<h3 id="example-request">Example request</h3>
+
+<pre class="terminal">
+% curl -XGET "http://host:8181/rest/v2/domain.tld/user/mailbox?metadata=true"
+</pre>
+
 <h2 id="add-label-a-nameadda">Add label <a name="add"></a>
 </h2>
 
@@ -116,7 +122,7 @@
 </dl><h3 id="response">Response</h3>
 
 <pre class="headers"><code>Status: 201 Created
-Location: http://localhost:8080/rest/v2/domain.tld/user/mailbox/label/306</code></pre>
+Location: http://host:8181/rest/v2/domain.tld/user/mailbox/label/306</code></pre>
 
 <pre class="highlight"><code class="language-javascript"><span class="p">{</span>
   <span class="s2">"id"</span><span class="o">:</span> <span class="mi">306</span>
@@ -137,6 +143,12 @@ Location: http://localhost:8080/rest/v2/domain.tld/user/mailbox/label/306</code>
 <pre class="highlight"><code class="language-javascript"><span class="p">{</span>
   <span class="s2">"message"</span><span class="o">:</span> <span class="s2">"Error message"</span>
 <span class="p">}</span></code></pre>
+
+<h3 id="example-request-1">Example request</h3>
+
+<pre class="terminal">
+% curl -XPOST "http://host:8181/rest/v2/domain.tld/user/mailbox/label?name=Custom%20Label"
+</pre>
 
 <h2 id="rename-label-a-namerenamea">Rename label <a name="rename"></a>
 </h2>
@@ -162,6 +174,12 @@ Location: http://localhost:8080/rest/v2/domain.tld/user/mailbox/label/306</code>
   <span class="s2">"message"</span><span class="o">:</span> <span class="s2">"Error message"</span>
 <span class="p">}</span></code></pre>
 
+<h3 id="example-request-2">Example request</h3>
+
+<pre class="terminal">
+% curl -XPUT "http://host:8181/rest/v2/domain.tld/user/mailbox/label/306?name=RenameMyLabel"
+</pre>
+
 <h2 id="delete-label-a-namedeletea">Delete label <a name="delete"></a>
 </h2>
 
@@ -181,6 +199,12 @@ Location: http://localhost:8080/rest/v2/domain.tld/user/mailbox/label/306</code>
 <pre class="highlight"><code class="language-javascript"><span class="p">{</span>
   <span class="s2">"message"</span><span class="o">:</span> <span class="s2">"Error message"</span>
 <span class="p">}</span></code></pre>
+
+<h3 id="example-request-3">Example request</h3>
+
+<pre class="terminal">
+% curl -XDELETE "http://host:8181/rest/v2/domain.tld/user/mailbox/label/306"
+</pre>
       </div>
 
     <div id="js-sidebar" class="sidebar-shell">
@@ -226,8 +250,13 @@ Location: http://localhost:8080/rest/v2/domain.tld/user/mailbox/label/306</code>
               <li><a href="../message/#update">Update message</a></li>
               <li><a href="../message/#modify">Modify labels and markers</a></li>
               <li><a href="../message/#delete">Delete message</a></li>
-              <li><a href="../message/batch/#modify">Batch modify</a></li>
-              <li><a href="../message/batch/#delete">Batch delete</a></li>
+            </ul>
+          </li>
+          <li class="js-topic">
+            <h3><a href="#" class="js-expand-btn collapsed">&nbsp;</a><a href="../batch/">Batch Operations</a></h3>
+            <ul class="js-guides">
+              <li><a href="../batch/#modify">Batch message modify</a></li>
+              <li><a href="../batch/#delete">Batch message delete</a></li>
             </ul>
           </li>
         </ul>

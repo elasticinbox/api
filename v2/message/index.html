@@ -43,7 +43,7 @@
 
 <p><strong>Note:</strong> Messages are always ordered by time.</p>
 
-<pre><code>GET /rest/v2/:domain/:user/mailbox/label/:label_id
+<pre><code>GET /rest/v2/:domain/:user/mailbox/label/:labelid
 </code></pre>
 
 <h3 id="parameters">Parameters</h3>
@@ -146,6 +146,13 @@
   <span class="p">}</span>
 <span class="p">}</span></code></pre>
 
+<h3 id="example-request">Example request</h3>
+
+<pre class="terminal">
+% curl -XGET \
+ "http://host:8181/rest/v2/domain.tld/user/mailbox/label/1?metadata=true&amp;count=20&amp;start=e5586600-f81d-11df-8cc2-080027267700"
+</pre>
+
 <h2 id="get-parsed-message-a-namegeta">Get parsed message <a name="get"></a>
 </h2>
 
@@ -200,6 +207,13 @@
   <span class="s2">"next"</span><span class="o">:</span> <span class="s2">"e54d4270-f81d-11df-8cc2-080027267700"</span>
 <span class="p">}</span></code></pre>
 
+<h3 id="example-request-1">Example request</h3>
+
+<pre class="terminal">
+% curl -XGET \
+ "http://host:8181/rest/v2/domain.tld/user/mailbox/message/e54f6550-f81d-11df-a9d1-080027267700?adjacent=true&amp;label=1"
+</pre>
+
 <h2 id="get-raw-message-a-namerawa">Get raw message <a name="raw"></a>
 </h2>
 
@@ -227,8 +241,33 @@ Subject: =?utf-8?B?VVRGOCBUZXN0IMO8w6fDvG4gbcO2dnp1IGZpa2lsyZnFn23JmW1pxZ/JmW0=?
 Message-ID: &lt;3917ea5a412bc64e0c1f04d81ac2e5c6@elasticinbox.com&gt;
 MIME-Version: 1.0
 Content-Type: multipart/alternative;
-	boundary="b1_3917ea5a412bc64e0c1f04d81ac2e5c6"
+	boundary="b1-3917ea5a412bc64e0c1f04d81ac2e5c6"
 ...
+</pre>
+
+<h3 id="response-with-compressed-output">Response with compressed output</h3>
+
+<p>It is possible to get compressed message by specifying <code>Accept-Encoding: deflate</code> in the request
+headers.</p>
+
+<p><strong>Note:</strong> Output compressed using <code>deflate</code> (RFC1951). Only messages stored with compression will 
+be returned in the compressed format. For other messages, output will be uncompressed.
+See blob compression option in the configuration file for more details.</p>
+
+<pre class="headers"><code>Status: 200 OK
+Content-Type: text/plain
+Content-Encoding: deflate
+Transfer-Encoding: chunked</code></pre>
+
+<pre>
+binary deflated stream follows
+</pre>
+
+<h3 id="example-request-2">Example request</h3>
+
+<pre class="terminal">
+% curl -XGET --compressed \
+ "http://host:8181/rest/v2/domain.tld/user/mailbox/message/74a68000-d5fb-14ce-ba99-040cced3bd7a/raw"
 </pre>
 
 <h2 id="get-raw-message-uri-a-nameuria">Get raw message URI <a name="uri"></a>
@@ -263,6 +302,13 @@ Transfer-Encoding: chunked</code></pre>
 
 <pre>binary content follows</pre>
 
+<h3 id="example-request-3">Example request</h3>
+
+<pre class="terminal">
+% curl -XGET \
+ "http://host:8181/rest/v2/domain.tld/user/mailbox/message/e54f6550-f81d-11df-a9d1-080027267700/3.1"
+</pre>
+
 <h2 id="get-message-part-by-content-id-a-namecontentida">Get message part by Content ID <a name="contentid"></a>
 </h2>
 
@@ -274,16 +320,23 @@ Transfer-Encoding: chunked</code></pre>
 <h3 id="response-3">Response</h3>
 
 <pre class="headers"><code>Status: 200 OK
-Content-Type: application/msword
-Content-Disposition: attachment; filename="Letter.doc"
+Content-Type: image/png
+Content-Disposition: attachment; filename="elasticinbox.png"
 Transfer-Encoding: chunked</code></pre>
 
 <pre>binary content follows</pre>
 
+<h3 id="example-request-4">Example request</h3>
+
+<pre class="terminal">
+% curl -XGET \
+ "http://host:8181/rest/v2/domain.tld/user/mailbox/message/e54f6550-f81d-11df-a9d1-080027267700/&lt;img-12&gt;"
+</pre>
+
 <h2 id="store-message-a-namestorea">Store message <a name="store"></a>
 </h2>
 
-<p>Note: If no label specified, message will be stored only with label <code>0</code> (all_mails).</p>
+<p>Note: If no label specified, message will be stored only with label <code>0</code>.</p>
 
 <pre><code>POST /rest/v2/:domain/:user/mailbox/message
 </code></pre>
@@ -302,11 +355,19 @@ Transfer-Encoding: chunked</code></pre>
 <p>Returns URL for new message as well as javascript with message id.</p>
 
 <pre class="headers"><code>Status: 201 Created
-Location: http://localhost:8080/rest/v2/domain.tld/user/mailbox/message/e5031a10-f81d-11df-a88e-080027267700</code></pre>
+Location: http://host:8181/rest/v2/domain.tld/user/mailbox/message/e5031a10-f81d-11df-a88e-080027267700</code></pre>
 
 <pre class="highlight"><code class="language-javascript"><span class="p">{</span>
   <span class="s2">"id"</span><span class="o">:</span> <span class="s2">"e5031a10-f81d-11df-a88e-080027267700"</span>
 <span class="p">}</span></code></pre>
+
+<h3 id="example-request-5">Example request</h3>
+
+<pre class="terminal">
+% curl -XPOST \
+ "http://host:8181/rest/v2/domain.tld/user/mailbox/message?label=3&amp;label=100&amp;marker=seen"
+ -T test-message.eml
+</pre>
 
 <h2 id="update-message-a-nameupdatea">Update message <a name="update"></a>
 </h2>
@@ -329,18 +390,26 @@ Location: http://localhost:8080/rest/v2/domain.tld/user/mailbox/message/e5031a10
 <p>Returns URL for new message as well as javascript with message id.</p>
 
 <pre class="headers"><code>Status: 201 Created
-Location: http://localhost:8080/rest/v2/domain.tld/user/mailbox/message/9c0063e0-b131-11e0-a275-080027a49b23</code></pre>
+Location: http://host:8181/rest/v2/domain.tld/user/mailbox/message/9c0063e0-b131-11e0-a275-080027a49b23</code></pre>
 
 <pre class="highlight"><code class="language-javascript"><span class="p">{</span>
   <span class="s2">"id"</span><span class="o">:</span> <span class="s2">"9c0063e0-b131-11e0-a275-080027a49b23"</span>
 <span class="p">}</span></code></pre>
+
+<h3 id="example-request-6">Example request</h3>
+
+<pre class="terminal">
+% curl -XPOST \
+ "http://host:8181/rest/v2/domain.tld/user/mailbox/message/9c0063e0-b131-11e0-a275-080027a49b23"
+ -T another-test-message.eml
+</pre>
 
 <h2 id="modify-labels-and-markers-a-namemodifya">Modify labels and markers <a name="modify"></a>
 </h2>
 
 <p>This method allows adding and removing of labels and markers.</p>
 
-<p><strong>Note:</strong> Label <code>all_mails</code> added automatically and can’t be removed.</p>
+<p><strong>Note:</strong> Label <code>0</code> always added automatically and can’t be removed.</p>
 
 <pre><code>PUT /rest/v2/:domain/:user/mailbox/message/:uuid
 </code></pre>
@@ -366,10 +435,17 @@ Location: http://localhost:8080/rest/v2/domain.tld/user/mailbox/message/9c0063e0
 
 <pre class="headers no-response"><code>Status: 204 No Content</code></pre>
 
+<h3 id="example-request-7">Example request</h3>
+
+<pre class="terminal">
+% curl -XPUT \
+ "http://host:8181/rest/v2/domain.tld/user/mailbox/message/e5031a10-f81d-11df-a88e-080027267700?addlabel=3&amp;addlabel=540&amp;removemarker=seen"
+</pre>
+
 <h2 id="delete-message-a-namedeletea">Delete message <a name="delete"></a>
 </h2>
 
-<p><strong>Note:</strong> This operation only removes message from all indexes (including <code>all_mails</code>) and adds to the special PURGE index. It is still possible to accesses message directly by ID after deletion. To completely delete message from metadata and blob stores purge command has to be issued.</p>
+<p><strong>Note:</strong> This operation only removes message from all labels (including <code>0</code>) and adds it to the special <code>purge</code> queue. It is still possible to accesses message directly by ID after deletion. To completely delete message from metadata and blob stores purge command has to be issued.</p>
 
 <pre><code>DELETE /rest/v2/:domain/:user/mailbox/message/:uuid
 </code></pre>
@@ -377,6 +453,13 @@ Location: http://localhost:8080/rest/v2/domain.tld/user/mailbox/message/9c0063e0
 <h3 id="response-7">Response</h3>
 
 <pre class="headers no-response"><code>Status: 204 No Content</code></pre>
+
+<h3 id="example-request-8">Example request</h3>
+
+<pre class="terminal">
+% curl -XDELETE \
+ "http://host:8181/rest/v2/domain.tld/user/mailbox/message/e5031a10-f81d-11df-a88e-080027267700"
+</pre>
       </div>
 
     <div id="js-sidebar" class="sidebar-shell">
@@ -422,8 +505,13 @@ Location: http://localhost:8080/rest/v2/domain.tld/user/mailbox/message/9c0063e0
               <li><a href="#update">Update message</a></li>
               <li><a href="#modify">Modify labels and markers</a></li>
               <li><a href="#delete">Delete message</a></li>
-              <li><a href="batch/#modify">Batch modify</a></li>
-              <li><a href="batch/#delete">Batch delete</a></li>
+            </ul>
+          </li>
+          <li class="js-topic">
+            <h3><a href="#" class="js-expand-btn collapsed">&nbsp;</a><a href="../batch/">Batch Operations</a></h3>
+            <ul class="js-guides">
+              <li><a href="../batch/#modify">Batch message modify</a></li>
+              <li><a href="../batch/#delete">Batch message delete</a></li>
             </ul>
           </li>
         </ul>

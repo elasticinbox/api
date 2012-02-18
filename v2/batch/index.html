@@ -7,23 +7,23 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="-1">
   <meta name="MSSmartTagsPreventParsing" content="true" />
-  <title>Batch Message Operations | ElasticInbox API</title>
-  <link href="../../../css/reset.css" rel="stylesheet" type="text/css" />
-  <link href="../../../css/960.css" rel="stylesheet" type="text/css" />
-  <link href="../../../css/uv_active4d.css" rel="stylesheet" type="text/css" />
-  <link href="../../../shared/css/documentation.css" media="screen" rel="stylesheet" type="text/css">
-  <link href="../../../shared/css/pygments.css" media="screen" rel="stylesheet" type="text/css">
-  <script src="../../../shared/js/jquery.js" type="text/javascript"></script>
-  <script src="../../../shared/js/documentation.js" type="text/javascript"></script>
+  <title>Batch Operations | ElasticInbox API</title>
+  <link href="../../css/reset.css" rel="stylesheet" type="text/css" />
+  <link href="../../css/960.css" rel="stylesheet" type="text/css" />
+  <link href="../../css/uv_active4d.css" rel="stylesheet" type="text/css" />
+  <link href="../../shared/css/documentation.css" media="screen" rel="stylesheet" type="text/css">
+  <link href="../../shared/css/pygments.css" media="screen" rel="stylesheet" type="text/css">
+  <script src="../../shared/js/jquery.js" type="text/javascript"></script>
+  <script src="../../shared/js/documentation.js" type="text/javascript"></script>
 </head>
 <body class="api">
 
     <div id="header-wrapper">
       <div id="header">
         <div>
-          <a class="logo" href="../../../"><img src="/api/images/elasticinbox-logo.png" /></a>
+          <a class="logo" href="../../"><img src="/api/images/elasticinbox-logo.png" /></a>
           <ul class="nav">
-            <li><a href="../../">REST API v2</a></li>
+            <li><a href="../">REST API v2</a></li>
             <li><a href="http://www.elasticinbox.com">ElasticInbox.com</a></li>
           </ul>
         </div>
@@ -32,7 +32,7 @@
 
     <div id="wrapper">
       <div class="content">
-    <h1 id="batch-message-operations">Batch Message Operations</h1>
+    <h1 id="batch-operations">Batch Operations</h1>
 
 <h2 id="modify-messages--a-namemodifya">Modify messages  <a name="modify"></a>
 </h2>
@@ -79,7 +79,7 @@
 
 <pre class="terminal">
 $ curl -XPUT \
-  "http://localhost:8080/rest/v2/elasticinbox.com/user/mailbox/message?addlabel=3&amp;addlabel=540&amp;removemarker=seen" \
+  "http://host:8181/rest/v2/domain.tld/user/mailbox/message?addlabel=3&amp;addlabel=540&amp;removemarker=seen" \
    -d "[\"e5031a10-f81d-11df-a88e-080027267700\", \"e54f6550-f81d-11df-a9d1-080027267700\"]" \
    -H "Content-Type: application/json"
 </pre>
@@ -107,53 +107,66 @@ $ curl -XPUT \
 <h3 id="response-1">Response</h3>
 
 <pre class="headers no-response"><code>Status: 204 No Content</code></pre>
+
+<h3 id="example-request-1">Example request</h3>
+
+<pre class="terminal">
+% curl -XDELETE "http://host:8181/rest/v2/domain.tld/user/mailbox/message" \
+  -d "[\"e5031a10-f81d-11df-a88e-080027267700\", \"e54f6550-f81d-11df-a9d1-080027267700\"]" \
+  -H "Content-Type: application/json"
+</pre>
       </div>
 
     <div id="js-sidebar" class="sidebar-shell">
       <div class="js-toggle-list sidebar-module expandable">
         <ul>
           <li class="js-topic">
-            <h3><a href="#" class="js-expand-btn collapsed">&nbsp;</a><a href="../../">Summary</a></h3>
+            <h3><a href="#" class="js-expand-btn collapsed">&nbsp;</a><a href="../">Summary</a></h3>
           </li>
           <li class="js-topic">
-            <h3><a href="#" class="js-expand-btn collapsed">&nbsp;</a><a href="../../account/">Accounts</a></h3>
+            <h3><a href="#" class="js-expand-btn collapsed">&nbsp;</a><a href="../account/">Accounts</a></h3>
             <ul class="js-guides">
-              <li><a href="../../account/#add">Add</a></li>
-              <li><a href="../../account/#get">Get info</a></li>
-              <li><a href="../../account/#delete">Delete</a></li>
+              <li><a href="../account/#add">Add</a></li>
+              <li><a href="../account/#get">Get info</a></li>
+              <li><a href="../account/#delete">Delete</a></li>
             </ul>
           </li>
           <li class="js-topic">
-            <h3><a href="#" class="js-expand-btn collapsed">&nbsp;</a><a href="../../label/">Labels</a></h3>
+            <h3><a href="#" class="js-expand-btn collapsed">&nbsp;</a><a href="../label/">Labels</a></h3>
             <ul class="js-guides">
-              <li><a href="../../label/#get">Get all labels</a></li>
-              <li><a href="../../label/#add">Add</a></li>
-              <li><a href="../../label/#rename">Rename</a></li>
-              <li><a href="../../label/#delete">Delete</a></li>
+              <li><a href="../label/#get">Get all labels</a></li>
+              <li><a href="../label/#add">Add</a></li>
+              <li><a href="../label/#rename">Rename</a></li>
+              <li><a href="../label/#delete">Delete</a></li>
             </ul>
           </li>
           <li class="js-topic">
-            <h3><a href="#" class="js-expand-btn collapsed">&nbsp;</a><a href="../../mailbox/">Mailbox</a></h3>
+            <h3><a href="#" class="js-expand-btn collapsed">&nbsp;</a><a href="../mailbox/">Mailbox</a></h3>
             <ul class="js-guides">
-              <li><a href="../../mailbox/#purge">Purge</a></li>
-              <li><a href="../../mailbox/#restore">Restore</a></li>
+              <li><a href="../mailbox/#purge">Purge</a></li>
+              <li><a href="../mailbox/#restore">Restore</a></li>
             </ul>
           </li>
           <li class="js-topic">
-            <h3><a href="#" class="js-expand-btn collapsed">&nbsp;</a><a href="../">Messages</a></h3>
+            <h3><a href="#" class="js-expand-btn collapsed">&nbsp;</a><a href="../message/">Messages</a></h3>
             <ul class="js-guides">
-              <li><a href="../#list">List messages</a></li>
-              <li><a href="../#get">Get parsed message</a></li>
-              <li><a href="../#raw">Get raw message</a></li>
-              <li><a href="../#uri">Get raw message URI</a></li>
-              <li><a href="../#partid">Get message part by Part ID</a></li>
-              <li><a href="../#contentid">Get message part by Content ID</a></li>
-              <li><a href="../#store">Store message</a></li>
-              <li><a href="../#update">Update message</a></li>
-              <li><a href="../#modify">Modify labels and markers</a></li>
-              <li><a href="../#delete">Delete message</a></li>
-              <li><a href="#modify">Batch modify</a></li>
-              <li><a href="#delete">Batch delete</a></li>
+              <li><a href="../message/#list">List messages</a></li>
+              <li><a href="../message/#get">Get parsed message</a></li>
+              <li><a href="../message/#raw">Get raw message</a></li>
+              <li><a href="../message/#uri">Get raw message URI</a></li>
+              <li><a href="../message/#partid">Get message part by Part ID</a></li>
+              <li><a href="../message/#contentid">Get message part by Content ID</a></li>
+              <li><a href="../message/#store">Store message</a></li>
+              <li><a href="../message/#update">Update message</a></li>
+              <li><a href="../message/#modify">Modify labels and markers</a></li>
+              <li><a href="../message/#delete">Delete message</a></li>
+            </ul>
+          </li>
+          <li class="js-topic">
+            <h3><a href="#" class="js-expand-btn collapsed">&nbsp;</a><a href="./">Batch Operations</a></h3>
+            <ul class="js-guides">
+              <li><a href="#modify">Batch message modify</a></li>
+              <li><a href="#delete">Batch message delete</a></li>
             </ul>
           </li>
         </ul>

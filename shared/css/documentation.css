@@ -512,7 +512,7 @@ div.sidebar-module ul ul li span {
 .content dl code,
 .content ul code,
 p code {
-  font: 12px Monaco,"Courier New","DejaVu Sans Mono","Bitstream Vera Sans Mono",monospace;
+  font: 12px "Courier New","DejaVu Sans Mono","Bitstream Vera Sans Mono",monospace;
   color: #52595d;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
@@ -548,7 +548,7 @@ code {white-space: nowrap;}
 pre {
   border: 1px solid #cacaca;
   line-height: 1.2em;
-  font: 12px Monaco,"Courier New","DejaVu Sans Mono","Bitstream Vera Sans Mono",monospace;
+  font: 12px "Courier New","DejaVu Sans Mono","Bitstream Vera Sans Mono",monospace;
   padding: 10px;
   overflow:auto;
   -webkit-border-radius: 3px;
@@ -623,6 +623,7 @@ pre.terminal {
   text-shadow: none;
   background-image: none;
   filter: none;
+  letter-spacing: -1px;
 }
 
 pre.terminal em {
