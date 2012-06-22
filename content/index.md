@@ -5,3 +5,40 @@ title: ElasticInbox REST API
 # ElasticInbox REST API
 
 Start browsing ElasticInbox REST API resources on the right >>
+
+
+
+# API v2
+
+This describes the resources that make up the ElasticInbox REST API v2.
+
+**Note:** This API is in a beta state. Breaking changes may occur.
+
+## Schema
+
+All timestamps are returned in ISO 8601 format:
+
+    YYYY-MM-DDTHH:MM:SSZ
+
+## HTTP Verbs
+
+Where possible, API v2 strives to use appropriate HTTP verbs for each
+action.
+
+HEAD
+: Not used.
+
+GET
+: Used for retrieving resources.
+
+POST
+: Used for creating resources.
+
+PATCH
+: Not used. Could be used for updating resources with partial JSON data.
+
+PUT
+: Used for modifying resources or collections (batch).
+
+DELETE
+: Used for deleting resources.

@@ -44,3 +44,22 @@ age
 ### Response
 
 <%= headers 204 %>
+
+
+## Scrub counters <a name="scrub_counters"></a>
+
+Mailbox size, number of total and new messages rely on counters implemented in the storage layer. With Cassandra (currently the only supported storage system) there are a number of scenarios when counters may start deviating from the real data.
+
+Use this method to fix corrupted counters. It will read metadata for all messages in the mailbox, recalculate and update counters.
+
+    POST /rest/v2/:domain/:user/mailbox/scrub/counters
+
+### Response
+
+<%= headers 204 %>
+
+### Example request
+
+<pre class="terminal">
+% curl -XPOST "http://host:8181/rest/v2/domain.tld/user/mailbox/scrub/counters"
+</pre>
