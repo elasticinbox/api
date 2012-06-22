@@ -79,6 +79,26 @@
 </dl><h3 id="response-1">Response</h3>
 
 <pre class="headers no-response"><code>Status: 204 No Content</code></pre>
+
+<h2 id="scrub-counters-a-namescrubcountersa">Scrub counters <a name="scrub_counters"></a>
+</h2>
+
+<p>Mailbox size, number of total and new messages rely on counters implemented in the storage layer. With Cassandra (currently the only supported storage system) there are a number of scenarios when counters may start deviating from the real data.</p>
+
+<p>Use this method to fix corrupted counters. It will read metadata for all messages in the mailbox, recalculate and update counters.</p>
+
+<pre><code>POST /rest/v2/:domain/:user/mailbox/scrub/counters
+</code></pre>
+
+<h3 id="response-2">Response</h3>
+
+<pre class="headers no-response"><code>Status: 204 No Content</code></pre>
+
+<h3 id="example-request-1">Example request</h3>
+
+<pre class="terminal">
+% curl -XPOST "http://host:8181/rest/v2/domain.tld/user/mailbox/scrub/counters"
+</pre>
       </div>
 
     <div id="js-sidebar" class="sidebar-shell">
@@ -109,6 +129,7 @@
             <ul class="js-guides">
               <li><a href="#purge">Purge</a></li>
               <li><a href="#restore">Restore</a></li>
+              <li><a href="#scrub_counters">Scrub Counters</a></li>
             </ul>
           </li>
           <li class="js-topic">
@@ -158,6 +179,18 @@
         </div><!-- /.site -->
       </div><!-- /.upper_footer -->
     </div><!-- /#footer -->
+
+<!-- google analytics -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-27981474-2']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
 
 </body>
 </html>

@@ -35,6 +35,39 @@
     <h1 id="elasticinbox-rest-api">ElasticInbox REST API</h1>
 
 <p>Start browsing ElasticInbox REST API resources on the right »</p>
+
+<h1 id="api-v2">API v2</h1>
+
+<p>This describes the resources that make up the ElasticInbox REST API v2.</p>
+
+<p><strong>Note:</strong> This API is in a beta state. Breaking changes may occur.</p>
+
+<h2 id="schema">Schema</h2>
+
+<p>All timestamps are returned in ISO 8601 format:</p>
+
+<pre><code>YYYY-MM-DDTHH:MM:SSZ
+</code></pre>
+
+<h2 id="http-verbs">HTTP Verbs</h2>
+
+<p>Where possible, API v2 strives to use appropriate HTTP verbs for each
+action.</p>
+
+<dl>
+<dt>HEAD</dt>
+  <dd>Not used.</dd>
+  <dt>GET</dt>
+  <dd>Used for retrieving resources.</dd>
+  <dt>POST</dt>
+  <dd>Used for creating resources.</dd>
+  <dt>PATCH</dt>
+  <dd>Not used. Could be used for updating resources with partial JSON data.</dd>
+  <dt>PUT</dt>
+  <dd>Used for modifying resources or collections (batch).</dd>
+  <dt>DELETE</dt>
+  <dd>Used for deleting resources.</dd>
+</dl>
       </div>
 
     <div id="js-sidebar" class="sidebar-shell">
@@ -65,6 +98,7 @@
             <ul class="js-guides">
               <li><a href="v2/mailbox/#purge">Purge</a></li>
               <li><a href="v2/mailbox/#restore">Restore</a></li>
+              <li><a href="v2/mailbox/#scrub_counters">Scrub Counters</a></li>
             </ul>
           </li>
           <li class="js-topic">
@@ -114,6 +148,18 @@
         </div><!-- /.site -->
       </div><!-- /.upper_footer -->
     </div><!-- /#footer -->
+
+<!-- google analytics -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-27981474-2']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
 
 </body>
 </html>
