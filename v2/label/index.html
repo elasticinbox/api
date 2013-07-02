@@ -45,7 +45,7 @@
 
 <p>Returns all labels, their IDs, and optionally metadata (number of total and unread messages in the label).</p>
 
-<pre><code>PUT /rest/v2/:domain/:user/mailbox/purge
+<pre><code>GET /rest/v2/:domain/:user/mailbox/
 </code></pre>
 
 <h3 id="parameters">Parameters</h3>
@@ -69,6 +69,7 @@
   <span class="s2">"7"</span><span class="o">:</span> <span class="s2">"important"</span><span class="p">,</span>
   <span class="s2">"8"</span><span class="o">:</span> <span class="s2">"notifications"</span><span class="p">,</span>
   <span class="s2">"9"</span><span class="o">:</span> <span class="s2">"attachments"</span><span class="p">,</span>
+  <span class="s2">"10"</span><span class="o">:</span> <span class="s2">"pop3"</span><span class="p">,</span>
   <span class="s2">"340"</span><span class="o">:</span> <span class="s2">"MyLabel"</span><span class="p">,</span>
   <span class="s2">"1334"</span><span class="o">:</span> <span class="s2">"MyLabel^NestedLabel"</span>
 <span class="p">}</span></code></pre>
