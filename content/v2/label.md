@@ -14,7 +14,7 @@ For more information please refer to [Labels and Markers](https://github.com/ela
 
 Returns all labels, their IDs, and optionally metadata (number of total and unread messages in the label).
 
-    PUT /rest/v2/:domain/:user/mailbox/purge
+    GET /rest/v2/:domain/:user/mailbox/
 
 ### Parameters
 
@@ -35,6 +35,7 @@ metadata
   :'7' => 'important',
   :'8' => 'notifications',
   :'9' => 'attachments',
+  :'10' => 'pop3',
   :'340' => 'MyLabel',
   :'1334' => 'MyLabel^NestedLabel'
 %>
