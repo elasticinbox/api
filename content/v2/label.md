@@ -4,7 +4,9 @@ title: Label | ElasticInbox API
 
 # Label
 
-ElasticInbox uses labels as a replacement for the classic mailbox folders. Each label has ID and name. Nested labels (like subfolders) are also supported.
+ElasticInbox uses labels as a replacement for the classic mailbox folders. Each label has ID, name and custom attributes. Nested labels (like subfolders) are also supported.
+
+Each label can have a set of custom attributes such as _color_, _order_, _icon_, etc.
 
 Each account has a set of reserved labels which are created automatically when account initiated.
 
@@ -60,6 +62,15 @@ metadata
     :total => 3,
     :unread => 0
   },
+  :'1232' => {
+    :name => 'MyBlueLabel',
+    :total => 8,
+    :unread => 2,
+    :attributes => {
+      :order => '6',
+      :color => 'blue'
+    }
+  },
   :'...' => '...'
 %>
 
@@ -72,7 +83,7 @@ metadata
 
 ## Add label <a name="add"></a>
 
-Each user can add custom labels (similar to conventional folders). Unique label ID is automatically generated for each new label. There can be maximum of 10.000 labels in each account.
+Each account can have custom labels (similar to conventional folders). Unique label ID is automatically generated for each new label. Each account can have up to 10.000 labels. 
 
 **Note:** Label names are case insensitive, but will preserve letter cases.
 
@@ -81,7 +92,22 @@ Each user can add custom labels (similar to conventional folders). Unique label 
 ### Parameters
 
 name
-: _Required_ **string** - New label name. May not contain `^` character.
+: _Required_ **string** - New label name. Should not contain `^` character.
+
+### Input
+
+Label name can also be specified in the request body. Custom attributes should be specified in the request body. 
+
+**Note:** Request content type should be `application/json`
+
+<%= json \
+  :name => 'MyStarLabel',
+  :attributes => {
+    :icon => 'star',
+    :color => 'yellow',
+    :'...' => '...'
+  }
+%>
 
 ### Response
 
@@ -102,11 +128,16 @@ name
 ### Example request
 
 <pre class="terminal">
-% curl -XPOST "http://host:8181/rest/v2/domain.tld/user/mailbox/label?name=Custom%20Label"
+% curl -XPOST \
+  "http://host:8181/rest/v2/domain.tld/user/mailbox/label" \
+   -d "{\"name\" : \"MyStarLabel\", \"attributes\" : { \"color\" : \"yellow\" } }" \
+   -H "Content-Type: application/json"
 </pre>
 
 
-## Rename label <a name="rename"></a>
+## Update label <a name="update"></a>
+
+Rename label, update and remove custom attributes. To remove custom attribute set it to empty string or null.
 
     PUT /rest/v2/:domain/:user/mailbox/label/:id
 
@@ -114,6 +145,18 @@ name
 
 name
 : _Required_ **string** - New label name. May not contain `^` character.
+
+### Input 
+
+**Note:** Request content type should be `application/json`
+
+<%= json \
+  :name => 'RenameMyStar',
+  :attributes => {
+    :icon => 'yellow-star',
+    :color => ''
+  }
+%>
 
 ### Response
 
@@ -127,7 +170,10 @@ name
 ### Example request
 
 <pre class="terminal">
-% curl -XPUT "http://host:8181/rest/v2/domain.tld/user/mailbox/label/306?name=RenameMyLabel"
+% curl -XPUT \
+  "http://host:8181/rest/v2/domain.tld/user/mailbox/label/306" \
+   -d "{\"name\" : \"RenameMyStar\", \"attributes\" : { \"color\" : \"\" } }" \
+   -H "Content-Type: application/json"
 </pre>
 
 
