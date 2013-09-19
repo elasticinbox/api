@@ -100,6 +100,8 @@ Label name can also be specified in the request body. Custom attributes should b
 
 **Note:** Request content type should be `application/json`
 
+**Note:** `:` character is not allowed in attribute names
+
 <%= json \
   :name => 'MyStarLabel',
   :attributes => {
@@ -149,6 +151,8 @@ name
 ### Input 
 
 **Note:** Request content type should be `application/json`
+
+**Note:** `:` character is not allowed in attribute names
 
 <%= json \
   :name => 'RenameMyStar',
