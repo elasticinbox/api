@@ -99,6 +99,24 @@
 <pre class="terminal">
 % curl -XPOST "http://host:8181/rest/v2/domain.tld/user/mailbox/scrub/counters"
 </pre>
+
+<h2 id="scrub-indexes-a-namescrubindexesa">Scrub indexes <a name="scrub_indexes"></a>
+</h2>
+
+<p>In case when label indexes became corrupted, it is possible to rebuild them from message metadata. This command will also recalculate and update counters similar to <a name="scrub_counters">scrub counters</a> method. </p>
+
+<pre><code>POST /rest/v2/:domain/:user/mailbox/scrub/indexes
+</code></pre>
+
+<h3 id="response-3">Response</h3>
+
+<pre class="headers no-response"><code>Status: 204 No Content</code></pre>
+
+<h3 id="example-request-2">Example request</h3>
+
+<pre class="terminal">
+% curl -XPOST "http://host:8181/rest/v2/domain.tld/user/mailbox/scrub/indexes"
+</pre>
       </div>
 
     <div id="js-sidebar" class="sidebar-shell">
