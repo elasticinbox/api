@@ -63,3 +63,20 @@ Use this method to fix corrupted counters. It will read metadata for all message
 <pre class="terminal">
 % curl -XPOST "http://host:8181/rest/v2/domain.tld/user/mailbox/scrub/counters"
 </pre>
+
+
+## Scrub indexes <a name="scrub_indexes"></a>
+
+In case when label indexes became corrupted, it is possible to rebuild them from message metadata. This command will also recalculate and update counters similar to <a name="scrub_counters">scrub counters</a> method. 
+
+    POST /rest/v2/:domain/:user/mailbox/scrub/indexes
+
+### Response
+
+<%= headers 204 %>
+
+### Example request
+
+<pre class="terminal">
+% curl -XPOST "http://host:8181/rest/v2/domain.tld/user/mailbox/scrub/indexes"
+</pre>
