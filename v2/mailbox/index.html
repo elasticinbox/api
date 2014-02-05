@@ -47,10 +47,12 @@
 <h3 id="parameters">Parameters</h3>
 
 <dl>
-<dt>age</dt>
+  <dt>age</dt>
   <dd>
 <em>Optional</em> <strong>date</strong> - Purge messages only older than the given age. If not specified, all messages in the queue will be purged. Date can be in any format in the current locale which is understood by the <code>java.text.DateFormat.parse(String)</code>, for instance <code>"2011/04/15"</code> or <code>"2011/05/01 14:30"</code>.</dd>
-</dl><h3 id="response">Response</h3>
+</dl>
+
+<h3 id="response">Response</h3>
 
 <pre class="headers no-response"><code>Status: 204 No Content</code></pre>
 
@@ -73,10 +75,12 @@
 <h3 id="parameters-1">Parameters</h3>
 
 <dl>
-<dt>age</dt>
+  <dt>age</dt>
   <dd>
 <em>Optional</em> <strong>date</strong> - Purge messages only older than the given age. If not specified, all messages in the queue will be purged. Date can be in any format in the current locale which is understood by the <code>java.text.DateFormat.parse(String)</code>, for instance <code>"2011/04/15"</code> or <code>"2011/05/01 14:30"</code>.</dd>
-</dl><h3 id="response-1">Response</h3>
+</dl>
+
+<h3 id="response-1">Response</h3>
 
 <pre class="headers no-response"><code>Status: 204 No Content</code></pre>
 
@@ -117,6 +121,7 @@
 <pre class="terminal">
 % curl -XPOST "http://host:8181/rest/v2/domain.tld/user/mailbox/scrub/indexes"
 </pre>
+
       </div>
 
     <div id="js-sidebar" class="sidebar-shell">

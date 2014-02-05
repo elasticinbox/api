@@ -53,10 +53,12 @@
 <h3 id="parameters">Parameters</h3>
 
 <dl>
-<dt>metadata</dt>
+  <dt>metadata</dt>
   <dd>
 <em>Optional</em> <strong>boolean</strong> - Returns total and unread message count. Also returns total bytes for the <code>all</code> label which is effectively mailbox size. Default value is <code>false</code>.</dd>
-</dl><h3 id="response-without-metadata">Response without metadata</h3>
+</dl>
+
+<h3 id="response-without-metadata">Response without metadata</h3>
 
 <pre class="headers"><code>Status: 200 OK</code></pre>
 
@@ -128,10 +130,12 @@
 <h3 id="parameters-1">Parameters</h3>
 
 <dl>
-<dt>name</dt>
+  <dt>name</dt>
   <dd>
 <em>Required</em> <strong>string</strong> - New label name. Should not contain <code>^</code> character.</dd>
-</dl><h3 id="input">Input</h3>
+</dl>
+
+<h3 id="input">Input</h3>
 
 <p>Label name can also be specified in the request body. Custom attributes should be specified in the request body. </p>
 
@@ -193,10 +197,12 @@ Location: http://host:8181/rest/v2/domain.tld/user/mailbox/label/306</code></pre
 <h3 id="parameters-2">Parameters</h3>
 
 <dl>
-<dt>name</dt>
+  <dt>name</dt>
   <dd>
 <em>Required</em> <strong>string</strong> - New label name. May not contain <code>^</code> character.</dd>
-</dl><h3 id="input-1">Input</h3>
+</dl>
+
+<h3 id="input-1">Input</h3>
 
 <p><strong>Note:</strong> Request content type should be <code>application/json</code></p>
 
@@ -256,6 +262,7 @@ Location: http://host:8181/rest/v2/domain.tld/user/mailbox/label/306</code></pre
 <pre class="terminal">
 % curl -XDELETE "http://host:8181/rest/v2/domain.tld/user/mailbox/label/306"
 </pre>
+
       </div>
 
     <div id="js-sidebar" class="sidebar-shell">

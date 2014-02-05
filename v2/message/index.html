@@ -49,9 +49,9 @@
 <h3 id="parameters">Parameters</h3>
 
 <dl>
-<dt>metadata</dt>
+  <dt>metadata</dt>
   <dd>
-<em>Optional</em> <strong>boolean</strong> - When set to true, message metadata (excl. pre-parsed body) are included in the result. By default only message IDs are returned (<code>false</code>).</dd>
+<em>Optional</em> <strong>boolean</strong> - When set to <code>true</code>, message metadata (excl. pre-parsed body) are included in the result. By default only message IDs are returned (<code>false</code>).</dd>
   <dt>count</dt>
   <dd>
 <em>Optional</em> <strong>integer</strong> - Number of returned messages. By default call returns only 50 messages. Maximum is 500.</dd>
@@ -61,7 +61,12 @@
   <dt>reverse</dt>
   <dd>
 <em>Optional</em> <strong>boolean</strong> - Defines order of messages. By default messages fetched in reverse order (<code>true</code>) in timeline, i.e. newest first. Set to <code>false</code> to list messages in ascending time order (i.e. oldest first).</dd>
-</dl><h3 id="response-without-metadata">Response without metadata</h3>
+  <dt>includebody</dt>
+  <dd>
+<em>Optional</em> <strong>boolean</strong> - If set to <code>true</code>, results will include full message body. By default no message bodies are included in response.</dd>
+</dl>
+
+<h3 id="response-without-metadata">Response without metadata</h3>
 
 <pre class="headers"><code>Status: 200 OK</code></pre>
 
@@ -166,7 +171,7 @@
 <h3 id="parameters-1">Parameters</h3>
 
 <dl>
-<dt>adjacent</dt>
+  <dt>adjacent</dt>
   <dd>
 <em>Optional</em> <strong>boolean</strong> - Will fetch previous and next messages by date in the given label. This parameter requires <code>label</code> parameter. Note that it will not check if message actually belongs to the given label.</dd>
   <dt>label</dt>
@@ -175,7 +180,9 @@
   <dt>markseen</dt>
   <dd>
 <em>Optional</em> <strong>boolean</strong> - Will mark message as SEEN if <code>true</code>. Often message has to be marked as SEEN immediately after reading.</dd>
-</dl><h3 id="response-with-adjacent-messages">Response with adjacent messages</h3>
+</dl>
+
+<h3 id="response-with-adjacent-messages">Response with adjacent messages</h3>
 
 <pre class="headers"><code>Status: 200 OK</code></pre>
 
@@ -344,13 +351,15 @@ Transfer-Encoding: chunked</code></pre>
 <h3 id="parameters-2">Parameters</h3>
 
 <dl>
-<dt>label</dt>
+  <dt>label</dt>
   <dd>
 <em>Optional</em> <em>Multiple</em> <strong>integer</strong> - These labels will be automatically applied to the message. Specify multiple times to apply multiple labels.</dd>
   <dt>marker</dt>
   <dd>
 <em>Optional</em> <em>Multiple</em> <strong>string</strong> - These markers will be automatically applied to the message. Specify multiple times to apply multiple markers.</dd>
-</dl><h3 id="response-4">Response</h3>
+</dl>
+
+<h3 id="response-4">Response</h3>
 
 <p>Returns URL for new message as well as javascript with message id.</p>
 
@@ -375,10 +384,12 @@ Location: http://host:8181/rest/v2/domain.tld/user/mailbox/message/e5031a10-f81d
 <p>This operation is similar to the <em>store message</em> but it is handy for updating already existing message. Update process is performed in tree steps:</p>
 
 <ol>
-<li>Store content as new message.</li>
+  <li>Store content as new message.</li>
   <li>Copy labels and markers from updated message to new message.</li>
   <li>Delete updated message.</li>
-</ol><p>As a result all information, other than labels and markers, will be replaced with the new content (and removed if does not exist in the new version).</p>
+</ol>
+
+<p>As a result all information, other than labels and markers, will be replaced with the new content (and removed if does not exist in the new version).</p>
 
 <p><strong>Note:</strong> Updated message will have new ID.</p>
 
@@ -417,7 +428,7 @@ Location: http://host:8181/rest/v2/domain.tld/user/mailbox/message/9c0063e0-b131
 <h3 id="parameters-3">Parameters</h3>
 
 <dl>
-<dt>addlabel</dt>
+  <dt>addlabel</dt>
   <dd>
 <em>Optional</em> <em>Multiple</em> <strong>integer</strong> - Add label to the message.</dd>
   <dt>removelabel</dt>
@@ -429,7 +440,9 @@ Location: http://host:8181/rest/v2/domain.tld/user/mailbox/message/9c0063e0-b131
   <dt>removemarker</dt>
   <dd>
 <em>Optional</em> <em>Multiple</em> <strong>string</strong> - Add marker to the message.</dd>
-</dl><p>Each of the parameters can be used multiple times in order to add/remove multiple labels/markers.</p>
+</dl>
+
+<p>Each of the parameters can be used multiple times in order to add/remove multiple labels/markers.</p>
 
 <h3 id="response-6">Response</h3>
 
@@ -460,6 +473,7 @@ Location: http://host:8181/rest/v2/domain.tld/user/mailbox/message/9c0063e0-b131
 % curl -XDELETE \
  "http://host:8181/rest/v2/domain.tld/user/mailbox/message/e5031a10-f81d-11df-a88e-080027267700"
 </pre>
+
       </div>
 
     <div id="js-sidebar" class="sidebar-shell">
